@@ -40,8 +40,9 @@ Project has monorepo structure.
 
 ### Frontend
 
-- [React](https://reactjs.org/) based micro frontends
+- [React](https://reactjs.org/) based [micro frontends](https://micro-frontends.org/)
 - [Webpack](https://webpack.js.org/)
+- [Lerna](https://github.com/lerna/lerna)
 - [Material UI](https://material-ui.com/) styles
 - [GRPC Web](https://github.com/grpc/grpc-web) communication layer with backend
 
