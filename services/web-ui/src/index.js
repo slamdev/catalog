@@ -1,8 +1,16 @@
-import React from "react";
-import ReactDOM from "react-dom";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import Button from '@material-ui/core/Button';
+import CssBaseline from '@material-ui/core/CssBaseline';
 
-const Index = () => {
-    return <div>Hello React!</div>;
-};
+function App() {
+    return (
+        <React.Fragment>
+            <CssBaseline>
+                <Button variant="contained" color="primary">Hello World</Button>
+            </CssBaseline>
+        </React.Fragment>
+    );
+}
 
-ReactDOM.render(<Index/>, document.getElementById("index"));
+ReactDOM.render(<App/>, document.getElementById("index"));

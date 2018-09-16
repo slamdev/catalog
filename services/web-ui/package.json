@@ -20,6 +20,8 @@
   },
   "dependencies": {
     "react": "^16.5.1",
-    "react-dom": "^16.5.1"
+    "react-dom": "^16.5.1",
+    "@material-ui/core": "^3.0.3",
+    "@material-ui/icons": "^3.0.1"
   }
 }
