@@ -1,15 +1,13 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
+import React from "react";
+import ReactDOM from "react-dom";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import ProductsPage from "./productsPage";
 
 function App() {
     return (
-        <React.Fragment>
-            <CssBaseline>
-                <Button variant="contained" color="primary">Hello World</Button>
-            </CssBaseline>
-        </React.Fragment>
+        <CssBaseline>
+            <ProductsPage/>
+        </CssBaseline>
     );
 }
 
