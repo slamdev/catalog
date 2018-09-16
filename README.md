@@ -24,7 +24,7 @@ Project has monorepo structure.
 ## Tools
 
 - [Makefile](https://www.gnu.org/software/make/manual/make.html) orchestrates build\deploy process
-- [Kustomize](https://github.com/kubernetes-sigs/kustomize) and [https://github.com/GoogleContainerTools/skaffold](skaffold) manage k8s manifests
+- [Kustomize](https://github.com/kubernetes-sigs/kustomize) and [Skaffold](https://github.com/GoogleContainerTools/skaffold) manage k8s manifests
 
 ### Infrastructure
 
