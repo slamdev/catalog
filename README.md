@@ -1,4 +1,4 @@
-# catalog [![pipeline status](https://gitlab.com/slamdev/catalog/badges/master/pipeline.svg)](https://gitlab.com/slamdev/catalog/commits/master)
+# catalog [![pipeline status](https://gitlab.com/slamdev/catalog/badges/master/pipeline.svg)](https://gitlab.com/slamdev/catalog/pipelines)
 
 AIM of the project is to show how different technologies can be integrated to build an application.
 
