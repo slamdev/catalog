@@ -1,0 +1,24 @@
+pluginManagement { spec ->
+    Map<String, String> pluginVersions = [
+            'org.springframework.boot'       : '2.0.5.RELEASE',
+            'io.spring.dependency-management': '1.0.6.RELEASE',
+    ]
+    spec.resolutionStrategy { strategy ->
+        strategy.eachPlugin { resolver ->
+            String version = pluginVersions.get(resolver.requested.id.id)
+            if (version) {
+                resolver.useVersion(version)
+            }
+        }
+    }
+}
+
+rootProject.name = 'catalog'
+
+['services'].collect { file(it).listFiles() }
+        .flatten()
+        .findAll { File dir -> new File(dir, 'build.gradle').exists() }
+        .each { File file ->
+    String path = file.parentFile.name
+    include "${path}:${file.name}"
+}
