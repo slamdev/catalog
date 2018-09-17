@@ -1,0 +1,10 @@
+{
+  "name": "catalog",
+  "private": true,
+  "scripts": {
+    "build": "lerna bootstrap && lerna run build --parallel"
+  },
+  "devDependencies": {
+    "lerna": "^3.4.0"
+  }
+}
