@@ -1,12 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import ProductsPage from "./productsPage";
+import ProductPageContainer from "./ProductPageContainer";
 
 function App() {
     return (
         <CssBaseline>
-            <ProductsPage/>
+            <ProductPageContainer/>
         </CssBaseline>
     );
 }

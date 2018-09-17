@@ -26,14 +26,6 @@ const styles = theme => ({
     }
 });
 
-const products = [...Array(20)].map((_, i) => {
-    return {
-        name: "Product #" + i,
-        description: "Product description",
-        imageUrl: "https://developers.chrome.com/extensions/examples/api/idle/idle_simple/sample-128.png"
-    };
-});
-
 const ProductsPage = ({classes, products}) => {
     return (
         <React.Fragment>
@@ -51,8 +43,8 @@ const ProductsPage = ({classes, products}) => {
                     <Grid item={true} xs={12}>
                         <Typography variant={"display3"} align={"center"} color={"textPrimary"}>Products</Typography>
                     </Grid>
-                    {products.map((product, key) => (
-                        <Grid key={key} item={true} xs={12} sm={6} md={4}>
+                    {products.map(product => (
+                        <Grid key={product.id} item={true} xs={12} sm={6} md={4}>
                             <Card>
                                 <CardMedia className={classes.media} image={product.imageUrl}
                                            component={"img"} title={product.name}/>
@@ -75,10 +67,6 @@ const ProductsPage = ({classes, products}) => {
 ProductsPage.propTypes = {
     classes: PropTypes.object.isRequired,
     products: PropTypes.arrayOf(PropTypes.object).isRequired
-};
-
-ProductsPage.defaultProps = {
-    products: products
 };
 
 export default withStyles(styles)(ProductsPage);
