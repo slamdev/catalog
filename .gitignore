@@ -2,6 +2,7 @@
 .idea/
 build/
 classes/
+dist/
 node_modules/
 out/
 .DS_Store
