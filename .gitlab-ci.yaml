@@ -1,0 +1,108 @@
+stages:
+  - etc
+  - ops
+  - infra
+  - apps
+  - review
+
+.k8s: &k8s
+  tags:
+    - slamdev
+    - catalog
+  variables:
+    DOCKER_HOST: tcp://localhost:2375
+  services:
+    - slamdev/catalog-dind
+  before_script:
+    - unset KUBECONFIG
+
+.prod: &prod
+  environment:
+    name: prod
+    url: https://catalog.slamdev.net
+  only:
+    - master
+
+.review: &review
+  environment:
+    name: review/$CI_BUILD_REF_NAME
+    url: http://$CI_BUILD_REF_SLUG.catalog.slamdev.net
+    on_stop: stop
+  only:
+    - branches
+  except:
+    - master
+
+etc:
+  <<: *k8s
+  stage: etc
+  image: slamdev/catalog-builder-base
+  script: make deploy-etc -j -O
+  only:
+    - master
+
+ops:
+  <<: *k8s
+  stage: ops
+  image: slamdev/catalog-builder-base
+  script: make deploy-ops e=${CI_ENVIRONMENT_NAME} -j -O
+  only:
+    - master
+  environment:
+    name: ops
+    url: https://ops.catalog.slamdev.net
+
+.infra: &infra
+  <<: *k8s
+  stage: infra
+  image: slamdev/catalog-builder-base
+  script: make deploy-infra e=${CI_ENVIRONMENT_NAME} -j -O
+
+infra-prod:
+  <<: *infra
+  <<: *prod
+
+infra-review:
+  <<: *infra
+  <<: *review
+
+.java: &java
+  <<: *k8s
+  stage: services
+  image: slamdev/catalog-builder-java
+  script: make deploy-java e=${CI_ENVIRONMENT_NAME} -j -O
+
+java-prod:
+  <<: *java
+  <<: *prod
+
+java-review:
+  <<: *java
+  <<: *review
+
+.js: &js
+  <<: *k8s
+  stage: services
+  image: slamdev/catalog-builder-js
+  script: make deploy-js e=${CI_ENVIRONMENT_NAME} -j -O
+
+js-prod:
+  <<: *js
+  <<: *prod
+
+js-review:
+  <<: *js
+  <<: *review
+
+stop:
+  <<: *k8s
+  <<: *review
+  stage: review
+  image: slamdev/catalog-builder-base
+  script: kubectl delete ns catalog-review-$CI_BUILD_REF_SLUG
+  variables:
+    GIT_STRATEGY: none
+  when: manual
+  environment:
+    name: review/$CI_BUILD_REF_NAME
+    action: stop
