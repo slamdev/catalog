@@ -66,7 +66,7 @@ spec:
             - name: patched-config-volume
               mountPath: /etc/gitlab-runner
       restartPolicy: Always
-      serviceAccountName: gitlab-runner-sa
+      serviceAccountName: runner-sa
       terminationGracePeriodSeconds: 180
       volumes:
         - name: config-volume

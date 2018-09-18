@@ -1,5 +1,6 @@
 resources:
-  - service-account.yaml
+  - runner-service-account.yaml
+  - executor-service-account.yaml
   - deployment.yaml
 commonLabels:
   name: gitlab-runner

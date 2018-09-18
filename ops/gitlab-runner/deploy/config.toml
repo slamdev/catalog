@@ -6,7 +6,7 @@ concurrent = 10
   token = "_TOKEN_"
   executor = "kubernetes"
   [runners.kubernetes]
-    service_account = "gitlab-runner-sa"
+    service_account = "gitlab-runner-executor-sa"
     namespace = "catalog-ops"
     image = "alpine"
     cpu_limit = "100m"
