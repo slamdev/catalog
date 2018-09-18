@@ -1,6 +1,6 @@
 #!/bin/sh
 
-set -euxo pipefail
+set -euo pipefail
 
 GENERATED_CREDENTIALS="credentials.json"
 

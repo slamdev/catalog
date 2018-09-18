@@ -1,6 +1,6 @@
 #!/bin/sh
 
-set -euxo pipefail
+set -euo pipefail
 
 TERRAFORM_BACKEND_PROJECT="catalog-tf-backend"
 REGION="australia-southeast1"

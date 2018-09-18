@@ -1,6 +1,6 @@
 #!/bin/sh
 
-set -euxo pipefail
+set -euo pipefail
 
 terraform init -backend-config=backend.tfvars
 terraform plan -out=tfplan
