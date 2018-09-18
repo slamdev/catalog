@@ -1,0 +1,39 @@
+apiVersion: skaffold/v1alpha2
+kind: Config
+build:
+  tagPolicy:
+    envTemplate:
+      template: "{{.IMAGE_NAME}}:latest"
+  artifacts:
+  - imageName: slamdev/catalog-builder-base
+    workspace: builders/base
+    docker:
+      cacheFrom:
+      - alpine
+      - slamdev/catalog-builder-base
+  - imageName: slamdev/catalog-builder-java
+    workspace: builders/java
+    docker:
+      cacheFrom:
+      - slamdev/catalog-builder-base
+      - slamdev/catalog-builder-java
+  - imageName: slamdev/catalog-builder-js
+    workspace: builders/js
+    docker:
+      cacheFrom:
+      - slamdev/catalog-builder-base
+      - slamdev/catalog-builder-js
+  - imageName: slamdev/catalog-dind
+    workspace: dind
+    docker:
+      cacheFrom:
+      - docker:dind
+      - slamdev/catalog-dind
+  - imageName: slamdev/catalog-gitlab-runner-helper
+    workspace: gitlab-runner-helper
+    docker:
+      cacheFrom:
+      - gitlab/gitlab-runner-helper:x86_64-latest
+      - slamdev/catalog-gitlab-runner-helper
+deploy:
+  kubectl: {}
