@@ -38,3 +38,12 @@ module "gke" {
   k8s_username = "${var.k8s_username}"
   k8s_password = "${var.k8s_password}"
 }
+
+module "gcr_service_account" {
+  source = "./modules/service-account"
+  project_id = "${module.project.project_id}"
+  name = "gcr-sa"
+  roles = [
+    "roles/storage.admin"
+  ]
+}
