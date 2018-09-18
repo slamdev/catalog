@@ -31,11 +31,8 @@ then
     while [ "`curl --header "PRIVATE-TOKEN: ${PERSONAL_ACCESS_TOKEN}" "${URL}/runners/${RUNNER_ID}/jobs?status=running" | jq -re '.[].id'`" != "" ]
     do
         echo "Some jobs are still in progress"
-        sleep 5
+        sleep 1
     done
 fi
 
 echo "No jobs are running at the moment. Shutting down the runner"
-
-# Sleep for 240 seconds to make sure that runner finished processing
-sleep 240

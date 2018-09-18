@@ -10,6 +10,12 @@ EXISTING_RUNNERS=`curl --header "PRIVATE-TOKEN: ${PERSONAL_ACCESS_TOKEN}" "${URL
     jq ".[] | select(.description == \"${RUNNER_NAME}\") | .id"`
 
 for runner in ${EXISTING_RUNNERS}; do
+    while [ "`curl --header "PRIVATE-TOKEN: ${PERSONAL_ACCESS_TOKEN}" "${URL}/runners/${runner}/jobs?status=running" | \
+        jq -re '.[].id'`" != "" ]
+    do
+        echo "Some jobs are still in progress"
+        sleep 1
+    done
     echo "Deleting existing runner: ${runner}"
     curl --request DELETE --header "PRIVATE-TOKEN: ${PERSONAL_ACCESS_TOKEN}" "${URL}/runners/${runner}"
 done

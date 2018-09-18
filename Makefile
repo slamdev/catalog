@@ -47,7 +47,6 @@ deploy-ops/ops/namespace-configuration:
 	@echo "Deploying [ops/namespace-configuration] to $(NAMESPACE)"
 	$(call pull_images_for_cache,ops/namespace-configuration)
 	cd ops/namespace-configuration && skaffold run
-	$(call verify_deployment_status,ops/namespace-configuration)
 	$(call tag_n_push,ops/namespace-configuration)
 
 deploy-ops/%: ENVIRONMENT := ops
@@ -56,7 +55,6 @@ deploy-ops/%: deploy-ops/ops/namespace-configuration
 	@echo "Deploying [$*] to $(NAMESPACE)"
 	$(call pull_images_for_cache,$*)
 	cd $* && skaffold run
-	$(call verify_deployment_status,$*)
 	$(call tag_n_push,$*)
 
 deploy-ops: $(DEPLOY_OPS_TARGETS)
