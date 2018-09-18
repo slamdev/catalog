@@ -67,7 +67,7 @@ spec:
               mountPath: /etc/gitlab-runner
       restartPolicy: Always
       serviceAccountName: runner-sa
-      terminationGracePeriodSeconds: 180
+      terminationGracePeriodSeconds: 360
       volumes:
         - name: config-volume
           configMap:

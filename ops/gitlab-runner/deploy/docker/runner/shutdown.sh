@@ -37,5 +37,5 @@ fi
 
 echo "No jobs are running at the moment. Shutting down the runner"
 
-# Sleep for 60 seconds to make sure that runner finished processing
-sleep 60
+# Sleep for 240 seconds to make sure that runner finished processing
+sleep 240
