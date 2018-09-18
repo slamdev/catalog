@@ -1,0 +1,5 @@
+resources:
+- namespace.yaml
+namespace: catalog-ops
+commonLabels:
+  env: ops
