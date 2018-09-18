@@ -22,7 +22,11 @@ endif
 ETC_MODULES := $(shell find etc -name skaffold.yaml -mindepth 2 -maxdepth 2 -exec dirname {} \;)
 DEPLOY_ETC_TARGETS := $(foreach m,$(ETC_MODULES),deploy-etc/$(m))
 
-deploy-etc/%:
+deploy-etc/etc/cluster-configuration:
+	@echo "Configuring cluster"
+	cd etc/cluster-configuration && ./configure-cluster.sh
+
+deploy-etc/%: deploy-etc/etc/cluster-configuration
 	@echo "Deploying [$*]"
 	$(call pull_images_for_cache,$*)
 	cd $* && skaffold build

@@ -5,7 +5,7 @@ if [ -z "${1}" ] || [ -z "${2}" ]; then
     exit 1
 fi
 
-set -euxo pipefail
+set -euo pipefail
 
 K8S_USERNAME=${1}
 K8S_PASSWORD=${2}
