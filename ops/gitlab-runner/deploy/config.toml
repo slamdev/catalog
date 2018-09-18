@@ -1,0 +1,35 @@
+concurrent = 10
+
+[[runners]]
+  name = "catalog-runner"
+  url = "https://gitlab.com/"
+  token = "_TOKEN_"
+  executor = "kubernetes"
+  [runners.kubernetes]
+    service_account = "gitlab-runner-sa"
+    namespace = "catalog-ops"
+    image = "alpine"
+    cpu_limit = "100m"
+    memory_limit = "64Mi"
+    service_cpu_limit = "100m"
+    service_memory_limit = "64Mi"
+    helper_cpu_limit = "100m"
+    helper_memory_limit = "64Mi"
+    cpu_request = "100m"
+    memory_request = "64Mi"
+    service_cpu_request =  "100m"
+    service_memory_request = "64Mi"
+    helper_cpu_request =  "100m"
+    helper_memory_request = "64Mi"
+    pull_policy = "always"
+    helper_image = "slamdev/catalog-gitlab-runner-helper:latest"
+    terminationGracePeriodSeconds = 30
+    privileged = true
+  [runners.cache]
+    Type = "s3"
+    ServerAddress = "minio-svc"
+    Insecure = true
+    AccessKey = "catalog"
+    SecretKey = "catalog"
+    BucketName = "gitlab-runner-cache"
+    Shared = true

@@ -1,0 +1,23 @@
+resources:
+  - service-account.yaml
+  - deployment.yaml
+commonLabels:
+  name: gitlab-runner
+  env: ops
+namePrefix: gitlab-runner-
+namespace: catalog-ops
+configMapGenerator:
+  - name: runner-config
+    files:
+      - config.toml
+  - name: registration-config
+    literals:
+      - RUNNER_NAME=catalog-runner
+      - RUNNER_TAG_LIST=slamdev,catalog
+      - CI_SERVER_URL=https://gitlab.com
+      - GITLAB_CONFIG_FILE=/etc/gitlab-runner-root/config.toml
+secretGenerator:
+  - name: tokens-secret
+    commands:
+      PERSONAL_ACCESS_TOKEN: "echo ${PERSONAL_ACCESS_TOKEN}"
+      REGISTRATION_TOKEN: "echo ${REGISTRATION_TOKEN}"

@@ -1,0 +1,79 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app
+spec:
+  replicas: 1
+  progressDeadlineSeconds: 60
+  strategy:
+    type: RollingUpdate
+  template:
+    spec:
+      initContainers:
+        - name: registrator
+          envFrom:
+            - configMapRef:
+                name: registration-config
+          image: slamdev/catalog-gitlab-registrator
+          env:
+            - name: PERSONAL_ACCESS_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: tokens-secret
+                  key: PERSONAL_ACCESS_TOKEN
+            - name: REGISTRATION_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: tokens-secret
+                  key: REGISTRATION_TOKEN
+          volumeMounts:
+            - name: config-volume
+              mountPath: /etc/gitlab-runner-root
+            - name: patched-config-volume
+              mountPath: /etc/gitlab-ranner-patched-config
+      containers:
+        - name: app
+          envFrom:
+            - configMapRef:
+                name: registration-config
+          env:
+            - name: PERSONAL_ACCESS_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: tokens-secret
+                  key: PERSONAL_ACCESS_TOKEN
+            - name: REGISTRATION_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: tokens-secret
+                  key: REGISTRATION_TOKEN
+          args:
+            - run
+          image: slamdev/catalog-gitlab-runner
+          imagePullPolicy: Always
+          resources:
+            limits:
+              cpu: 100m
+              memory: 64Mi
+            requests:
+              cpu: 100m
+              memory: 64Mi
+          lifecycle:
+            preStop:
+              exec:
+                command: ["./opt/shutdown.sh"]
+          volumeMounts:
+            - name: patched-config-volume
+              mountPath: /etc/gitlab-runner
+      restartPolicy: Always
+      serviceAccountName: gitlab-runner-sa
+      terminationGracePeriodSeconds: 180
+      volumes:
+        - name: config-volume
+          configMap:
+            name: runner-config
+        - name: tokens-volume
+          secret:
+            secretName: tokens-secret
+        - name: patched-config-volume
+          emptyDir: {}

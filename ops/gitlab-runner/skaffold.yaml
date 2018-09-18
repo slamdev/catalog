@@ -1,0 +1,21 @@
+apiVersion: skaffold/v1alpha2
+kind: Config
+build:
+  tagPolicy:
+    sha256: {}
+  artifacts:
+  - imageName: slamdev/catalog-gitlab-registrator
+    workspace: deploy/docker/registrator
+    docker:
+      cacheFrom:
+      - alpine
+      - slamdev/catalog-gitlab-registrator:ops
+  - imageName: slamdev/catalog-gitlab-runner
+    workspace: deploy/docker/runner
+    docker:
+      cacheFrom:
+      - gitlab/gitlab-runner:alpine
+      - slamdev/catalog-gitlab-runner:ops
+deploy:
+  kustomize:
+    kustomizePath: deploy
