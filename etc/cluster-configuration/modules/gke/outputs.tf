@@ -2,6 +2,10 @@ output "k8s_host" {
   value = "${google_container_cluster.cluster.endpoint}"
 }
 
-output "gke_node_pool_cluster" {
-  value = "${google_container_node_pool.pool.cluster}"
+output "k8s_username" {
+  value = "${google_container_cluster.cluster.master_auth.0.username}"
+}
+
+output "k8s_password" {
+  value = "${google_container_cluster.cluster.master_auth.0.password}"
 }

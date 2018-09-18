@@ -28,11 +28,11 @@ resource "google_container_node_pool" "pool" {
   cluster = "${google_container_cluster.cluster.name}"
   zone = "${data.google_compute_zones.zones.names[0]}"
   project = "${var.project_id}"
-  initial_node_count = 3
+  initial_node_count = "${var.min_node_count}"
 
   autoscaling {
-    min_node_count = 3
-    max_node_count = 6
+    min_node_count = "${var.min_node_count}"
+    max_node_count = "${var.max_node_count}"
   }
 
   management {
