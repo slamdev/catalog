@@ -59,3 +59,14 @@ Project has monorepo structure.
 
 - [Golang](https://golang.org/) microservices
 - [Go Modules](https://github.com/golang/go/wiki/Modules)
+
+## Development environment
+
+Configure **kubectl**:
+```bash
+PROJECT_ID=`gcloud projects list --filter="name=catalog" --format="get(project_id)"`
+gcloud config set project ${PROJECT_ID}
+ZONE=`gcloud container clusters list --filter="name=gke-cluster" --format="get(zone)"`
+gcloud config set compute/zone ${ZONE}
+gcloud container clusters get-credentials gke-cluster
+```
