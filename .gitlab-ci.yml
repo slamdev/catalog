@@ -12,13 +12,15 @@ stages:
   variables:
     DOCKER_HOST: tcp://localhost:2375
     # Workaround for https://gitlab.com/gitlab-org/gitlab-ce/issues/38346
-    DOCKER_AUTH_CONFIG: $DOCKER_AUTH_CONFIG
+    DOCKER_USERNAME: $DOCKER_USERNAME
+    DOCKER_PASSWORD: $DOCKER_PASSWORD
     PERSONAL_ACCESS_TOKEN: $PERSONAL_ACCESS_TOKEN
     REGISTRATION_TOKEN: $REGISTRATION_TOKEN
   services:
     - slamdev/catalog-dind
   before_script:
     - unset KUBECONFIG
+    - docker login -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD}
 
 .prod: &prod
   environment:
