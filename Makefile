@@ -24,7 +24,7 @@ DEPLOY_ETC_TARGETS := $(foreach m,$(ETC_MODULES),deploy-etc/$(m))
 
 deploy-etc/etc/cluster-configuration:
 	@echo "Configuring cluster"
-#	cd etc/cluster-configuration && ./populate-tfvars.sh && ./configure-cluster.sh
+	cd etc/cluster-configuration && ./populate-tfvars.sh && ./configure-cluster.sh
 
 deploy-etc/%: deploy-etc/etc/cluster-configuration
 	@echo "Deploying [$*]"
