@@ -5,6 +5,14 @@ if [ -z "${1}" ] || [ -z "${2}" ]; then
     exit 1
 fi
 
+GENERATED_CREDENTIALS="credentials.json"
+
+# Allow CI to pass gcloud key file
+if [ "${TF_KEY}" ]; then
+    echo ${TF_KEY} > ${GENERATED_CREDENTIALS}
+    gcloud auth activate-service-account --key-file ${GENERATED_CREDENTIALS}
+fi
+
 set -euo pipefail
 
 K8S_USERNAME=${1}
@@ -20,8 +28,10 @@ ORGANIZATION_ID=`gcloud organizations list --format="get(name)" | grep -oE "[^/]
 BILLING_ACCOUNT_ID=`gcloud beta billing accounts list --format="get(name)" | grep -oE "[^/]+$"`
 TERRAFORM_BACKEND_PROJECT_ID=`gcloud projects list --filter="name=${TERRAFORM_BACKEND_PROJECT}" --format="get(project_id)"`
 
-gcloud iam service-accounts keys create ${GENERATED_CREDENTIALS} \
-  --iam-account terraform@${TERRAFORM_BACKEND_PROJECT_ID}.iam.gserviceaccount.com
+if [ ! -f "${GENERATED_CREDENTIALS}" ]; then
+    gcloud iam service-accounts keys create ${GENERATED_CREDENTIALS} \
+        --iam-account terraform@${TERRAFORM_BACKEND_PROJECT_ID}.iam.gserviceaccount.com
+fi
 
 # backend.tfvars
 cat > backend.tfvars <<EOF

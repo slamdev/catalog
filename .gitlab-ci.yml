@@ -15,6 +15,7 @@ stages:
     PERSONAL_ACCESS_TOKEN: $PERSONAL_ACCESS_TOKEN
     REGISTRATION_TOKEN: $REGISTRATION_TOKEN
     GCR_KEY: $GCR_KEY
+    TF_KEY: $TF_KEY
   services:
     - asia.gcr.io/catalog-8c920686/dind
   before_script:
@@ -41,7 +42,7 @@ stages:
 etc:
   <<: *k8s
   stage: etc
-  image: asia.gcr.io/catalog-8c920686/builder-base
+  image: asia.gcr.io/catalog-8c920686/builder-etc
   script: make deploy-etc
   only:
     - master

@@ -11,6 +11,12 @@ build:
         cacheFrom:
           - alpine
           - asia.gcr.io/catalog-8c920686/builder-base
+    - imageName: asia.gcr.io/catalog-8c920686/builder-etc
+      workspace: builders/etc
+      docker:
+        cacheFrom:
+          - asia.gcr.io/catalog-8c920686/builder-base
+          - asia.gcr.io/catalog-8c920686/builder-etc
     - imageName: asia.gcr.io/catalog-8c920686/builder-java
       workspace: builders/java
       docker:
