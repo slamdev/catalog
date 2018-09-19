@@ -14,6 +14,8 @@ TERRAFORM_BACKEND_PROJECT_ID="${TERRAFORM_BACKEND_PROJECT}-`openssl rand -hex 4`
 ## Setup Google Cloud Project
 ##
 
+ORIGINAL_PROJECT=`gcloud config get-value project`
+
 # Create admin project
 gcloud projects create ${TERRAFORM_BACKEND_PROJECT_ID} --set-as-default \
   --name=${TERRAFORM_BACKEND_PROJECT} --organization=${ORGANIZATION_ID}
@@ -48,3 +50,5 @@ gcloud organizations add-iam-policy-binding ${ORGANIZATION_ID} \
 gsutil mb -p ${TERRAFORM_BACKEND_PROJECT_ID} -l ${REGION} gs://${TERRAFORM_BACKEND_PROJECT_ID}
 # Enable versioning for Google Storage bucket
 gsutil versioning set on gs://${TERRAFORM_BACKEND_PROJECT_ID}
+# Restore original project
+gcloud config set project ${ORIGINAL_PROJECT}
