@@ -44,7 +44,7 @@ stages:
 etc:
   <<: *k8s
   stage: etc
-  image: asia.gcr.io/catalog-8c920686/builder-etc
+  image: asia.gcr.io/catalog-8c920686/builder-base
   script: make deploy-etc
   only:
     - master
