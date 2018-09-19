@@ -31,6 +31,7 @@ module "project" {
   dns_name = "${var.dns_name}"
 }
 
+// https://github.com/terraform-providers/terraform-provider-google/issues/2022
 module "gke" {
   source = "./modules/gke"
   project_id = "${module.project.project_id}"
