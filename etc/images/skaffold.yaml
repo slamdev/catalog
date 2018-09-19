@@ -5,35 +5,35 @@ build:
     envTemplate:
       template: "{{.IMAGE_NAME}}:latest"
   artifacts:
-    - imageName: slamdev/catalog-builder-base
+    - imageName: asia.gcr.io/catalog-8c920686/builder-base
       workspace: builders/base
       docker:
         cacheFrom:
           - alpine
-          - slamdev/catalog-builder-base
-    - imageName: slamdev/catalog-builder-java
+          - asia.gcr.io/catalog-8c920686/builder-base
+    - imageName: asia.gcr.io/catalog-8c920686/builder-java
       workspace: builders/java
       docker:
         cacheFrom:
-          - slamdev/catalog-builder-base
-          - slamdev/catalog-builder-java
-    - imageName: slamdev/catalog-builder-js
+          - asia.gcr.io/catalog-8c920686/builder-base
+          - asia.gcr.io/catalog-8c920686/builder-java
+    - imageName: asia.gcr.io/catalog-8c920686/builder-js
       workspace: builders/js
       docker:
         cacheFrom:
-          - slamdev/catalog-builder-base
-          - slamdev/catalog-builder-js
-    - imageName: slamdev/catalog-dind
+          - asia.gcr.io/catalog-8c920686/builder-base
+          - asia.gcr.io/catalog-8c920686/builder-js
+    - imageName: asia.gcr.io/catalog-8c920686/dind
       workspace: dind
       docker:
         cacheFrom:
           - docker:dind
-          - slamdev/catalog-dind
-    - imageName: slamdev/catalog-gitlab-runner-helper
+          - asia.gcr.io/catalog-8c920686/dind
+    - imageName: asia.gcr.io/catalog-8c920686/gitlab-runner-helper
       workspace: gitlab-runner-helper
       docker:
         cacheFrom:
           - gitlab/gitlab-runner-helper:x86_64-latest
-          - slamdev/catalog-gitlab-runner-helper
+          - asia.gcr.io/catalog-8c920686/gitlab-runner-helper
 deploy:
   kubectl: {}

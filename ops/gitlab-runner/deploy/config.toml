@@ -22,7 +22,7 @@ concurrent = 10
     helper_cpu_request =  "100m"
     helper_memory_request = "64Mi"
     pull_policy = "always"
-    helper_image = "slamdev/catalog-gitlab-runner-helper:latest"
+    helper_image = "asia.gcr.io/catalog-8c920686/gitlab-runner-helper:latest"
     terminationGracePeriodSeconds = 30
     privileged = true
   [runners.cache]

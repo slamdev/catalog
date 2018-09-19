@@ -17,7 +17,7 @@ stages:
     PERSONAL_ACCESS_TOKEN: $PERSONAL_ACCESS_TOKEN
     REGISTRATION_TOKEN: $REGISTRATION_TOKEN
   services:
-    - slamdev/catalog-dind
+    - asia.gcr.io/catalog-8c920686/dind
   before_script:
     - unset KUBECONFIG
     - docker login -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD}
@@ -42,7 +42,7 @@ stages:
 etc:
   <<: *k8s
   stage: etc
-  image: slamdev/catalog-builder-base
+  image: asia.gcr.io/catalog-8c920686/builder-base
   script: make deploy-etc
   only:
     - master
@@ -50,7 +50,7 @@ etc:
 ops:
   <<: *k8s
   stage: ops
-  image: slamdev/catalog-builder-base
+  image: asia.gcr.io/catalog-8c920686/builder-base
   script: make deploy-ops e=${CI_ENVIRONMENT_NAME}
   only:
     - master
@@ -61,7 +61,7 @@ ops:
 .infra: &infra
   <<: *k8s
   stage: infra
-  image: slamdev/catalog-builder-base
+  image: asia.gcr.io/catalog-8c920686/builder-base
   script: make deploy-infra e=${CI_ENVIRONMENT_NAME}
 
 infra-prod:
@@ -75,7 +75,7 @@ infra-review:
 .java: &java
   <<: *k8s
   stage: services
-  image: slamdev/catalog-builder-java
+  image: asia.gcr.io/catalog-8c920686/builder-java
   script: make deploy-java e=${CI_ENVIRONMENT_NAME}
 
 java-prod:
@@ -89,7 +89,7 @@ java-review:
 .js: &js
   <<: *k8s
   stage: services
-  image: slamdev/catalog-builder-js
+  image: asia.gcr.io/catalog-8c920686/builder-js
   script: make deploy-js e=${CI_ENVIRONMENT_NAME}
 
 js-prod:
@@ -104,7 +104,7 @@ stop:
   <<: *k8s
   <<: *review
   stage: review
-  image: slamdev/catalog-builder-base
+  image: asia.gcr.io/catalog-8c920686/builder-base
   script: kubectl delete ns catalog-review-$CI_BUILD_REF_SLUG
   variables:
     GIT_STRATEGY: none

@@ -14,7 +14,7 @@ spec:
           envFrom:
             - configMapRef:
                 name: registration-config
-          image: slamdev/catalog-gitlab-registrator
+          image: asia.gcr.io/catalog-8c920686/gitlab-registrator
           env:
             - name: PERSONAL_ACCESS_TOKEN
               valueFrom:
@@ -49,7 +49,7 @@ spec:
                   key: REGISTRATION_TOKEN
           args:
             - run
-          image: slamdev/catalog-gitlab-runner
+          image: asia.gcr.io/catalog-8c920686/gitlab-runner
           imagePullPolicy: Always
           resources:
             limits:
