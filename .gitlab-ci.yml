@@ -14,10 +14,12 @@ stages:
     # Workaround for https://gitlab.com/gitlab-org/gitlab-ce/issues/38346
     PERSONAL_ACCESS_TOKEN: $PERSONAL_ACCESS_TOKEN
     REGISTRATION_TOKEN: $REGISTRATION_TOKEN
+    GCR_KEY: $GCR_KEY
   services:
     - asia.gcr.io/catalog-8c920686/dind
   before_script:
     - unset KUBECONFIG
+    - echo ${GCR_KEY} | docker login -u _json_key --password-stdin https://asia.gcr.io
 
 .prod: &prod
   environment:
