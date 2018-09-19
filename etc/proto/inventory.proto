@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+import "google/protobuf/Empty.proto";
+
+package proto;
+
+option java_package = "com.github.slamdev.catalog.inventory.api";
+
+service Inventory {
+    rpc GetProducts (google.protobuf.Empty) returns (ProductsResponse);
+}
+
+message ProductsResponse {
+    repeated Product products = 1;
+}
+
+message Product {
+    int64 id = 1;
+    string name = 2;
+    string description = 3;
+    string imageUrl = 4;
+}

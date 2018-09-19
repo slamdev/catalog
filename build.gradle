@@ -7,7 +7,7 @@ allprojects {
     group 'com.github.slamdev'
 }
 
-subprojects { Project module ->
+subprojects {
     plugins.withId('java') {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
@@ -39,6 +39,11 @@ subprojects { Project module ->
                 dependency 'org.codehaus.janino:janino:3.0.8'
                 dependency 'net.logstash.logback:logstash-logback-encoder:5.0'
                 dependency 'org.projectlombok:lombok:1.18.2'
+                dependency 'org.lognet:grpc-spring-boot-starter:2.4.1'
+                dependency 'io.grpc:grpc-stub:1.15.0'
+                dependency 'com.google.protobuf:protobuf-java:3.6.1'
+                dependency 'com.google.protobuf:protoc:3.6.1'
+                dependency 'io.grpc:protoc-gen-grpc-java:1.15.0'
             }
         }
     }
@@ -102,6 +107,37 @@ subprojects { Project module ->
             findbugsPlugins 'com.mebigfatguy.fb-contrib:fb-contrib:7.2.1'
             findbugsPlugins 'com.h3xstream.findsecbugs:findsecbugs-plugin:1.7.1'
             findbugsPlugins 'com.digitalreasoning.sdp:findbugs-extensions-drs:1.1.0'
+        }
+    }
+
+    afterEvaluate {
+        plugins.withId('com.google.protobuf') {
+            protobuf {
+                protoc {
+                    artifact = 'com.google.protobuf:protoc'
+                }
+                plugins {
+                    grpc {
+                        artifact = 'io.grpc:protoc-gen-grpc-java'
+                    }
+                }
+                generateProtoTasks {
+                    all().each { task ->
+                        task.plugins {
+                            grpc {
+                                outputSubDir = 'java'
+                            }
+                        }
+                    }
+                }
+            }
+            sourceSets {
+                main {
+                    java {
+                        srcDir "${buildDir}/generated/source/proto/main/java"
+                    }
+                }
+            }
         }
     }
 }

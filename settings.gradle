@@ -2,6 +2,7 @@ pluginManagement { spec ->
     Map<String, String> pluginVersions = [
             'org.springframework.boot'       : '2.0.5.RELEASE',
             'io.spring.dependency-management': '1.0.6.RELEASE',
+            'com.google.protobuf'            : '0.8.6',
     ]
     spec.resolutionStrategy { strategy ->
         strategy.eachPlugin { resolver ->

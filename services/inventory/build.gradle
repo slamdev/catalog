@@ -5,15 +5,14 @@ plugins {
     id 'findbugs'
     id 'io.spring.dependency-management'
     id 'org.springframework.boot'
+    id 'com.google.protobuf'
 }
 
 dependencies {
-    compile 'org.springframework.boot:spring-boot-starter-web'
-    compile 'javax.servlet:javax.servlet-api'
-    runtime 'org.springframework.boot:spring-boot-starter-actuator'
-    runtime 'org.springframework.boot:spring-boot-starter-undertow'
+    compile 'org.lognet:grpc-spring-boot-starter'
+    compile 'com.google.protobuf:protobuf-java'
+    compile 'io.grpc:grpc-stub'
     compileOnly 'org.projectlombok:lombok'
-    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
     annotationProcessor 'org.projectlombok:lombok'
-    testCompile 'org.springframework.boot:spring-boot-starter-test'
+    protobuf rootProject.files('etc/proto/inventory.proto')
 }
