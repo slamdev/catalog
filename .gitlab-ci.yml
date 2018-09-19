@@ -16,6 +16,8 @@ stages:
     REGISTRATION_TOKEN: $REGISTRATION_TOKEN
     GCR_KEY: $GCR_KEY
     TF_KEY: $TF_KEY
+    K8S_USERNAME: $K8S_USERNAME
+    K8S_PASSWORD: $K8S_PASSWORD
   services:
     - asia.gcr.io/catalog-8c920686/dind
   before_script:

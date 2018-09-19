@@ -1,6 +1,14 @@
 #!/bin/sh
 
-if [ -z "${1}" ] || [ -z "${2}" ]; then
+K8S_USERNAME=${K8S_USERNAME}
+K8S_PASSWORD=${K8S_PASSWORD}
+
+if [ "${1}" ] && [ -z "${2}" ]; then
+    K8S_USERNAME=${1}
+    K8S_PASSWORD=${2}
+fi
+
+if [ -z "${K8S_USERNAME}" ] || [ -z "${K8S_PASSWORD}" ]; then
     echo "K8S credentials should be specified!\n"
     exit 1
 fi
@@ -14,9 +22,6 @@ if [ "${TF_KEY}" ]; then
 fi
 
 set -euo pipefail
-
-K8S_USERNAME=${1}
-K8S_PASSWORD=${2}
 
 TERRAFORM_BACKEND_PROJECT="catalog-tf-backend"
 REGION="australia-southeast1"
