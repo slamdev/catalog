@@ -44,13 +44,13 @@ const ProductsPage = ({classes, products}) => {
                         <Typography variant={"display3"} align={"center"} color={"textPrimary"}>Products</Typography>
                     </Grid>
                     {products.map(product => (
-                        <Grid key={product.id} item={true} xs={12} sm={6} md={4}>
+                        <Grid key={product.getId()} item={true} xs={12} sm={6} md={4}>
                             <Card>
-                                <CardMedia className={classes.media} image={product.imageUrl}
+                                <CardMedia className={classes.media} image={product.getImageurl()}
                                            component={"img"} title={product.name}/>
-                                <CardHeader title={product.name} titleTypographyProps={{align: 'center'}}/>
+                                <CardHeader title={product.getName()} titleTypographyProps={{align: 'center'}}/>
                                 <CardContent>
-                                    <Typography>{product.description}</Typography>
+                                    <Typography>{product.getDescription()}</Typography>
                                 </CardContent>
                                 <CardActions>
                                     <Button fullWidth color={"primary"}>Add to favorites</Button>

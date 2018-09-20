@@ -1,6 +1,9 @@
 import * as React from "react";
 import ProductsPage from "./ProductsPage";
 
+import {Empty} from "./proto/google/protobuf/empty_pb"
+import {InventoryPromiseClient} from "./proto/inventory_grpc_web_pb"
+
 export default class ProductPageContainer extends React.Component {
 
     constructor(props) {
@@ -11,9 +14,11 @@ export default class ProductPageContainer extends React.Component {
     }
 
     componentDidMount() {
-        fetch('http://localhost:8080/product')
-            .then(response => response.json())
-            .then(products => this.setState({products}));
+        const client = new InventoryPromiseClient('http://localhost:18080', null, null);
+        client.getProducts(new Empty(), {})
+            .then(response => response.getProductsList())
+            .then(products => this.setState({products}))
+            .catch(error => console.error(error));
     }
 
     render() {

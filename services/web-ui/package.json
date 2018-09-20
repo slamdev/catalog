@@ -23,6 +23,8 @@
     "react-dom": "^16.5.1",
     "prop-types": "^15.6.2",
     "@material-ui/core": "^3.0.3",
-    "@material-ui/icons": "^3.0.1"
+    "@material-ui/icons": "^3.0.1",
+    "google-protobuf": "^3.6.1",
+    "grpc-web": "^0.4.0"
   }
 }
