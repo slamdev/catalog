@@ -1,0 +1,14 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app
+spec:
+  replicas: 2
+  template:
+    spec:
+      containers:
+        - name: app
+          image: asia.gcr.io/catalog-8c920686/inventory
+          ports:
+            - name: grpc
+              containerPort: 6565

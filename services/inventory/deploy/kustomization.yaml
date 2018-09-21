@@ -1,0 +1,7 @@
+resources:
+  - service.yaml
+  - deployment.yaml
+namePrefix: inventory-
+namespace: catalog
+commonLabels:
+  app: inventory

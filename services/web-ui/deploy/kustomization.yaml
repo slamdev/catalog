@@ -1,0 +1,11 @@
+resources:
+  - service.yaml
+  - deployment.yaml
+namePrefix: web-ui-
+namespace: catalog
+commonLabels:
+  app: web-ui
+configMapGenerator:
+  - name: config
+    files:
+      - nginx.conf

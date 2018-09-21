@@ -1,0 +1,9 @@
+resources:
+  - service-account.yaml
+  - deployment.yaml
+  - admin-service.yaml
+  - api-service.yaml
+namespace: catalog
+namePrefix: ambassador-
+commonLabels:
+  app: ambassador

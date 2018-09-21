@@ -1,0 +1,15 @@
+apiVersion: skaffold/v1alpha2
+kind: Config
+build:
+  tagPolicy:
+    sha256: {}
+  artifacts:
+    - imageName: asia.gcr.io/catalog-8c920686/ambassador
+      workspace: deploy
+      docker: {}
+#        cacheFrom:
+#          - quay.io/datawire/ambassador:0.39.0
+#          - asia.gcr.io/catalog-8c920686/ambassador
+deploy:
+  kustomize:
+    kustomizePath: deploy

@@ -1,0 +1,15 @@
+apiVersion: skaffold/v1alpha2
+kind: Config
+build:
+  tagPolicy:
+    sha256: {}
+  artifacts:
+    - imageName: asia.gcr.io/catalog-8c920686/inventory
+      docker:
+        dockerfilePath: deploy/Dockerfile
+#        cacheFrom:
+#          - openjdk:8-jre-alpine
+#          - asia.gcr.io/catalog-8c920686/inventory
+deploy:
+  kustomize:
+    kustomizePath: deploy

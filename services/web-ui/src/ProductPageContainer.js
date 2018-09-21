@@ -14,7 +14,7 @@ export default class ProductPageContainer extends React.Component {
     }
 
     componentDidMount() {
-        const client = new InventoryPromiseClient('http://localhost:18080', null, null);
+        const client = new InventoryPromiseClient('/api/inventory', null, null);
         client.getProducts(new Empty(), {})
             .then(response => response.getProductsList())
             .then(products => this.setState({products}))

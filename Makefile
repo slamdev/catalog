@@ -73,7 +73,7 @@ ifeq ($(ENVIRONMENT),review)
 	$(call prepare_review_app,infra/namespace-configuration)
 endif
 	$(call pull_images_for_cache,infra/namespace-configuration)
-	cd infra/namespace-configuration && skaffold run --profile=$(ENVIRONMENT)
+	cd infra/namespace-configuration && skaffold run
 	$(call verify_deployment_status,infra/namespace-configuration)
 	$(call tag_n_push,infra/namespace-configuration)
 
@@ -82,10 +82,10 @@ deploy-infra/%: deploy-infra/infra/namespace-configuration
 ifeq ($(ENVIRONMENT),review)
 	$(call prepare_review_app,$*)
 endif
-	$(call pull_images_for_cache,$*)
-	cd $* && skaffold run --profile=$(ENVIRONMENT)
-	$(call verify_deployment_status,$*)
-	$(call tag_n_push,$*)
+#	$(call pull_images_for_cache,$*)
+	cd $* && skaffold run
+#	$(call verify_deployment_status,$*)
+#	$(call tag_n_push,$*)
 
 deploy-infra: $(DEPLOY_INFRA_TARGETS)
 
@@ -106,10 +106,10 @@ deploy-js/%: build-js
 ifeq ($(ENVIRONMENT),review)
 	$(call prepare_review_app,$*)
 endif
-	$(call pull_images_for_cache,$*)
-	cd $* && skaffold run --profile=$(ENVIRONMENT)
-	$(call verify_deployment_status,$*)
-	$(call tag_n_push,$*)
+#	$(call pull_images_for_cache,$*)
+	cd $* && skaffold run
+#	$(call verify_deployment_status,$*)
+#	$(call tag_n_push,$*)
 
 deploy-js: $(DEPLOY_JS_TARGETS)
 
@@ -123,17 +123,17 @@ DEPLOY_JAVA_TARGETS := $(foreach m,$(JAVA_MODULES),deploy-java/$(m))
 
 build-java:
 	@echo "Building java"
-	./gradlew build
+	./gradlew assemble
 
 deploy-java/%: build-java
 	@echo "Deploying [$*] to $(NAMESPACE)"
 ifeq ($(ENVIRONMENT),review)
 	$(call prepare_review_app,$*)
 endif
-	$(call pull_images_for_cache,$*)
-	cd $* && skaffold run --profile=$(ENVIRONMENT)
-	$(call verify_deployment_status,$*)
-	$(call tag_n_push,$*)
+#	$(call pull_images_for_cache,$*)
+	cd $* && skaffold run
+#	$(call verify_deployment_status,$*)
+#	$(call tag_n_push,$*)
 
 deploy-java: $(DEPLOY_JAVA_TARGETS)
 
