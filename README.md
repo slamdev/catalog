@@ -18,19 +18,19 @@ Project has monorepo structure.
 
 ### CI
 
-- [Gitlab CI](https://about.gitlab.com/features/gitlab-ci-cd/) with [Review Apps](https://about.gitlab.com/features/review-apps/) support
-- [K8S Gitlab Runner](https://docs.gitlab.com/runner/install/kubernetes.html)
+- :white_check_mark: [Gitlab CI](https://about.gitlab.com/features/gitlab-ci-cd/) with :question: [Review Apps](https://about.gitlab.com/features/review-apps/) support
+- :white_check_mark: [K8S Gitlab Runner](https://docs.gitlab.com/runner/install/kubernetes.html)
 
 ## Tools
 
-- [Makefile](https://www.gnu.org/software/make/manual/make.html) orchestrates build\deploy process
-- [Kustomize](https://github.com/kubernetes-sigs/kustomize) and [Skaffold](https://github.com/GoogleContainerTools/skaffold) manage k8s manifests
+- :white_check_mark: [Makefile](https://www.gnu.org/software/make/manual/make.html) orchestrates build\deploy process
+- :white_check_mark: [Kustomize](https://github.com/kubernetes-sigs/kustomize) and :white_check_mark: [Skaffold](https://github.com/GoogleContainerTools/skaffold) manage k8s manifests
 
 ### Infrastructure
 
-- Managed [Kubernetes](https://kubernetes.io/) instance in [Google Cloud](https://cloud.google.com/kubernetes-engine/) 
-- [Terraform](https://www.terraform.io/) scripts to create Kubernetes cluster
-- [Ambassador](https://www.getambassador.io/) API gateway
+- :white_check_mark: Managed [Kubernetes](https://kubernetes.io/) instance in [Google Cloud](https://cloud.google.com/kubernetes-engine/) 
+- :white_check_mark: [Terraform](https://www.terraform.io/) scripts to create Kubernetes cluster
+- :white_check_mark: [Ambassador](https://www.getambassador.io/) API gateway
 - [Istio](https://istio.io/) service mesh
 - [NATS](https://nats.io/) event bus
 - [CockroachDB](https://www.cockroachlabs.com/) relation database
@@ -40,11 +40,11 @@ Project has monorepo structure.
 
 ### Frontend
 
-- [React](https://reactjs.org/) based [micro frontends](https://micro-frontends.org/)
-- [Webpack](https://webpack.js.org/)
-- [Lerna](https://github.com/lerna/lerna)
-- [Material UI](https://material-ui.com/) styles
-- [GRPC Web](https://github.com/grpc/grpc-web) communication layer with backend
+- :white_check_mark: [React](https://reactjs.org/) based :question: [micro frontends](https://micro-frontends.org/)
+- :white_check_mark: [Webpack](https://webpack.js.org/)
+- :white_check_mark: [Lerna](https://github.com/lerna/lerna)
+- :white_check_mark: [Material UI](https://material-ui.com/) styles
+- :white_check_mark: [GRPC Web](https://github.com/grpc/grpc-web) communication layer with backend
 
 ### Backend
 
@@ -52,8 +52,8 @@ Project has monorepo structure.
 
 #### Java
 
-- [Java](http://jdk.java.net/) microservices based on [Spring Boot](http://spring.io/projects/spring-boot)
-- [Gradle](https://gradle.org/)
+- :white_check_mark: [Java](http://jdk.java.net/) microservices based on :white_check_mark: [Spring Boot](http://spring.io/projects/spring-boot)
+- :white_check_mark: [Gradle](https://gradle.org/)
 
 #### Golang
 
