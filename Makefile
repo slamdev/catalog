@@ -93,7 +93,7 @@ deploy-infra: $(DEPLOY_INFRA_TARGETS)
 ## JS modules
 ##
 
-JS_MODULES := $(shell find apps services -name package.json -mindepth 2 -maxdepth 2 -exec dirname {} \;)
+JS_MODULES := $(shell find services -name package.json -mindepth 2 -maxdepth 2 -exec dirname {} \;)
 BUILD_JS_TARGETS := build-js
 DEPLOY_JS_TARGETS := $(foreach m,$(JS_MODULES),deploy-js/$(m))
 
@@ -117,7 +117,7 @@ deploy-js: $(DEPLOY_JS_TARGETS)
 ## JAVA modules
 ##
 
-JAVA_MODULES := $(shell find apps services -name build.gradle -mindepth 2 -maxdepth 2 -exec dirname {} \;)
+JAVA_MODULES := $(shell find services -name build.gradle -mindepth 2 -maxdepth 2 -exec dirname {} \;)
 BUILD_JAVA_TARGET := build-java
 DEPLOY_JAVA_TARGETS := $(foreach m,$(JAVA_MODULES),deploy-java/$(m))
 
