@@ -1,8 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Button from "@material-ui/core/Button/Button";
-import AppBar from "@material-ui/core/AppBar/AppBar";
-import Toolbar from "@material-ui/core/Toolbar/Toolbar";
 import Typography from "@material-ui/core/Typography/Typography";
 import {withStyles} from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid/Grid";
@@ -13,9 +11,6 @@ import CardContent from "@material-ui/core/CardContent/CardContent";
 import CardMedia from "@material-ui/core/CardMedia/CardMedia";
 
 const styles = theme => ({
-    grow: {
-        flexGrow: 1
-    },
     layout: {
         width: 'auto',
         marginLeft: theme.spacing.unit * 3,
@@ -29,15 +24,6 @@ const styles = theme => ({
 const ProductsPage = ({classes, products}) => {
     return (
         <React.Fragment>
-            <AppBar position={"static"} color={"default"}>
-                <Toolbar>
-                    <Typography variant={"title"} color={"inherit"} className={classes.grow}>Catalog</Typography>
-                    <Button color={"primary"}>Products</Button>
-                    <Button>Favorites</Button>
-                    <Button>Register</Button>
-                    <Button>Login</Button>
-                </Toolbar>
-            </AppBar>
             <main className={classes.layout}>
                 <Grid container={true} spacing={40} alignItems="flex-end">
                     <Grid item={true} xs={12}>

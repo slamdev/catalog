@@ -1,5 +1,5 @@
 {
-  "name": "web-ui",
+  "name": "product-list",
   "private": true,
   "main": "src/index.js",
   "scripts": {

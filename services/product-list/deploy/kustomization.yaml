@@ -1,0 +1,11 @@
+resources:
+  - service.yaml
+  - deployment.yaml
+namePrefix: product-list-
+namespace: catalog
+commonLabels:
+  app: product-list
+configMapGenerator:
+  - name: config
+    files:
+      - nginx.conf

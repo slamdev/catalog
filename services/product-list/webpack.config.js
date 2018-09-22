@@ -1,8 +1,22 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin");
+const ProtoWebpackPlugin = require("./proto-webpack-plugin");
 
-const htmlWebpackPlugin = new HtmlWebPackPlugin({
+const indexHtmlWebpackPlugin = new HtmlWebPackPlugin({
+    filename: "./index.html",
     template: "./src/index.html",
-    filename: "./index.html"
+    inject: false
+});
+
+const componentHtmlWebpackPlugin = new HtmlWebPackPlugin({
+    filename: "./product-list.html",
+    template: "./src/product-list.html",
+    inject: false,
+    chunks: ['main']
+});
+
+const protoWebpackPlugin = new ProtoWebpackPlugin({
+    protoDir: "../../etc/proto",
+    outputDir: "./src/proto"
 });
 
 module.exports = {
@@ -35,5 +49,5 @@ module.exports = {
             }
         ]
     },
-    plugins: [htmlWebpackPlugin]
+    plugins: [indexHtmlWebpackPlugin, componentHtmlWebpackPlugin, protoWebpackPlugin]
 };

@@ -40,7 +40,7 @@ Project has monorepo structure.
 
 ### Frontend
 
-- :white_check_mark: [React](https://reactjs.org/) based :question: [micro frontends](https://micro-frontends.org/)
+- :white_check_mark: [React](https://reactjs.org/) based :white_check_mark: [micro frontends](https://micro-frontends.org/)
 - :white_check_mark: [Webpack](https://webpack.js.org/)
 - :white_check_mark: [Lerna](https://github.com/lerna/lerna)
 - :white_check_mark: [Material UI](https://material-ui.com/) styles

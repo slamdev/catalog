@@ -1,14 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import ProductPageContainer from "./ProductPageContainer";
+import Application from "./Application";
 
-function App() {
-    return (
-        <CssBaseline>
-            <ProductPageContainer/>
-        </CssBaseline>
-    );
-}
-
-ReactDOM.render(<App/>, document.getElementById("index"));
+document.addEventListener('DOMContentLoaded', () => ReactDOM.render(
+    <CssBaseline>
+        <Application/>
+    </CssBaseline>
+    , document.getElementById("index"))
+);
