@@ -12,3 +12,11 @@ spec:
           ports:
             - name: grpc
               containerPort: 6565
+          readinessProbe:
+            exec:
+              command: ["grpc_health_probe", "-addr=:6565"]
+            initialDelaySeconds: 5
+          livenessProbe:
+            exec:
+              command: ["grpc_health_probe", "-addr=:6565"]
+            initialDelaySeconds: 10

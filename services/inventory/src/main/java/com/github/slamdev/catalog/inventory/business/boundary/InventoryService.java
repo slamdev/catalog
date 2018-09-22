@@ -15,6 +15,7 @@ import static java.util.stream.Collectors.toList;
 @GRpcService
 public class InventoryService extends InventoryGrpc.InventoryImplBase {
 
+    @Override
     public void getProducts(Empty request, StreamObserver<ProductsResponse> responseObserver) {
         List<Product> products = IntStream.range(0, 20)
                 .mapToObj(i -> Product.newBuilder()

@@ -49,7 +49,7 @@ Project has monorepo structure.
 ### Backend
 
 - [GRPC](https://grpc.io/) communication layer between services
-- [GRPC Healthcheck](https://github.com/grpc-ecosystem/grpc-health-probe/) for K8S readiness and liveness probes
+- :white_check_mark: [GRPC Healthcheck](https://github.com/grpc-ecosystem/grpc-health-probe/) for K8S readiness and liveness probes
 
 #### Java
 
