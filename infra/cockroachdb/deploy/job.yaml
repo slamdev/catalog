@@ -1,0 +1,16 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: job
+spec:
+  template:
+    spec:
+      restartPolicy: OnFailure
+      containers:
+        - name: app
+          image: asia.gcr.io/catalog-8c920686/cockroachdb
+          command:
+            - /cockroach/cockroach
+            - init
+            - --insecure
+            - --host=cockroachdb-app-0.cockroachdb-mgmt-svc

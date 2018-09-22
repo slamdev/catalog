@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: app
+spec:
+  serviceName: mgmt-svc
+  replicas: 2
+  podManagementPolicy: Parallel
+  updateStrategy:
+    type: RollingUpdate
+  template:
+    spec:
+      containers:
+        - name: app
+          image: asia.gcr.io/catalog-8c920686/cockroachdb
+          ports:
+            - name: grpc
+              containerPort: 26257
+            - name: http
+              containerPort: 8080
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: http
+            initialDelaySeconds: 30
+            periodSeconds: 5
+          readinessProbe:
+            httpGet:
+              path: /health?ready=1
+              port: http
+            initialDelaySeconds: 10
+            periodSeconds: 5
+            failureThreshold: 2
+          volumeMounts:
+            - name: datadir
+              mountPath: /cockroach/cockroach-data
+          env:
+            - name: COCKROACH_CHANNEL
+              value: kubernetes-insecure
+          command:
+            - /bin/bash
+            - -ec
+            - exec /cockroach/cockroach start --logtostderr --insecure --advertise-host $(hostname -f) --http-host 0.0.0.0 --join cockroachdb-app-0.cockroachdb-mgmt-svc,cockroachdb-app-1.cockroachdb-mgmt-svc --cache 25% --max-sql-memory 25%
+      terminationGracePeriodSeconds: 60
+      volumes:
+        - name: datadir
+          persistentVolumeClaim:
+            claimName: datadir
+  volumeClaimTemplates:
+    - metadata:
+        name: datadir
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 1Gi

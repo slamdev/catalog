@@ -1,0 +1,8 @@
+resources:
+  - stateful-set.yaml
+  - service.yaml
+  - job.yaml
+namespace: catalog
+namePrefix: cockroachdb-
+commonLabels:
+  app: cockroachdb
