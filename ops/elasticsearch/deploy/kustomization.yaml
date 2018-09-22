@@ -1,0 +1,11 @@
+resources:
+  - services.yaml
+  - stateful-set.yaml
+commonLabels:
+  name: elasticsearch
+namePrefix: elasticsearch-
+namespace: catalog-ops
+configMapGenerator:
+  - name: config
+    files:
+      - elasticsearch.yml

@@ -1,0 +1,15 @@
+apiVersion: skaffold/v1alpha2
+kind: Config
+build:
+  tagPolicy:
+    sha256: {}
+  artifacts:
+    - imageName: asia.gcr.io/catalog-8c920686/elasticsearch
+      workspace: deploy
+      docker: {}
+#        cacheFrom:
+#          - docker.elastic.co/elasticsearch/elasticsearch:6.4.0
+#          - asia.gcr.io/catalog-8c920686/elasticsearch
+deploy:
+  kustomize:
+    kustomizePath: deploy
