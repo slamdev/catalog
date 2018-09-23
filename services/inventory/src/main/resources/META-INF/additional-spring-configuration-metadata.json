@@ -1,0 +1,19 @@
+{
+  "properties": [
+    {
+      "name": "catalog.inventory.database.name",
+      "type": "java.lang.String",
+      "description": "Database name."
+    },
+    {
+      "name": "catalog.inventory.database.host",
+      "type": "java.lang.String",
+      "description": "Database host."
+    },
+    {
+      "name": "catalog.inventory.database.port",
+      "type": "java.lang.String",
+      "description": "Database port."
+    }
+  ]
+}

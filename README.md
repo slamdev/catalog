@@ -33,7 +33,7 @@ Project has monorepo structure.
 - :white_check_mark: [Ambassador](https://www.getambassador.io/) API gateway
 - [Istio](https://istio.io/) service mesh
 - [NATS](https://nats.io/) event bus
-- [CockroachDB](https://www.cockroachlabs.com/) relation database
+- :white_check_mark: [CockroachDB](https://www.cockroachlabs.com/) relation database
 - [Prometheus](https://prometheus.io/) and [Grafana](https://grafana.com/) metric based monitoring
 - [Sentry](https://sentry.io/) application error monitoring
 - [ELK](https://www.elastic.co/elk-stack) logs viewer

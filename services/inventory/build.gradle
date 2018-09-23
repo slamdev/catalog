@@ -9,10 +9,14 @@ plugins {
 }
 
 dependencies {
+    compile 'org.springframework.boot:spring-boot-starter-data-jpa'
     compile 'org.lognet:grpc-spring-boot-starter'
     compile 'com.google.protobuf:protobuf-java'
     compile 'io.grpc:grpc-stub'
     compileOnly 'org.projectlombok:lombok'
+    compileOnly 'org.springframework.boot:spring-boot-configuration-processor'
+    compile 'org.flywaydb:flyway-core'
+    runtime 'org.postgresql:postgresql'
     annotationProcessor 'org.projectlombok:lombok'
     protobuf rootProject.files('etc/proto/inventory.proto')
 }

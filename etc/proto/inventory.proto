@@ -15,7 +15,7 @@ message ProductsResponse {
 }
 
 message Product {
-    int64 id = 1;
+    string id = 1;
     string name = 2;
     string description = 3;
     string imageUrl = 4;

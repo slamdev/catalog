@@ -1,3 +1,12 @@
+catalog.inventory:
+  database:
+    host: cockroachdb-svc
+    port: 26257
+    name: ${spring.application.name}
+
 spring:
   application:
     name: inventory
+  datasource:
+    url: jdbc:postgresql://${catalog.inventory.database.host}:${catalog.inventory.database.port}/${catalog.inventory.database.name}?sslmode=disable
+    username: root

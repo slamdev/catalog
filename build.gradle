@@ -35,6 +35,8 @@ subprojects {
                 mavenBom 'org.springframework.cloud:spring-cloud-gcp-dependencies:1.0.0.RELEASE'
             }
             dependencies {
+                // Use latest flyway to have compatibility with cockroach 2.0
+                dependency 'org.flywaydb:flyway-core:5.1.4'
                 dependency 'net.rakugakibox.spring.boot:logback-access-spring-boot-starter:2.7.1'
                 dependency 'org.codehaus.janino:janino:3.0.8'
                 dependency 'net.logstash.logback:logstash-logback-encoder:5.0'
