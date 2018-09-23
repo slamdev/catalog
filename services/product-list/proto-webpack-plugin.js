@@ -10,7 +10,7 @@ class ProtoWebpackPlugin {
     }
 
     apply(compiler) {
-        compiler.hooks.emit.tapPromise('ProtoWebpackPlugin', () => {
+        compiler.hooks.done.tapPromise('ProtoWebpackPlugin', () => {
             console.log("Starting protoc generation");
             return Promise.all(this.createProtocPromises())
                 .then(() => console.log("Finishing protoc generation"));
@@ -44,6 +44,7 @@ class ProtoWebpackPlugin {
         if (this.isFileGenerated(file, output)) {
             return Promise.resolve();
         }
+        this.createDirIfNotExists(output);
         const command = ` \
         protoc -I=${dir} ${file} \
           --js_out=import_style=commonjs:${output} \
@@ -54,6 +55,12 @@ class ProtoWebpackPlugin {
     isFileGenerated(file, output) {
         const generatedFile = output + "/" + file.replace('.proto', '_pb.js');
         return fs.existsSync(generatedFile);
+    }
+
+    createDirIfNotExists(dir) {
+        if (!fs.existsSync(dir)) {
+            fs.mkdirSync(dir);
+        }
     }
 }
 
