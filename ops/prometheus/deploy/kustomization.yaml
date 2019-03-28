@@ -1,0 +1,6 @@
+resources:
+  - operator.yaml
+commonLabels:
+  name: prometheus
+namePrefix: prometheus-
+namespace: catalog-ops
